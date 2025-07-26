@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICHE - Campus Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-focus:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        .university-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hidden { display: none !important; }
+        .marketplace-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg university-pattern min-h-screen">
+
+    <!-- Login Page -->
+    <div id="loginPage" class="min-h-screen flex items-center justify-center p-4">
+        <div class="glass-effect rounded-2xl shadow-2xl w-full max-w-md p-8 fade-in">
+            <!-- Logo and Header -->
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                        <path d="M12 7L8 9v6l4 2 4-2V9l-4-2z" fill="rgba(255,255,255,0.3)"/>
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">UNICHE</h1>
+                <p class="text-gray-600 text-sm">Campus Marketplace for Ghana Universities</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email or Username</label>
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="email" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300"
+                        placeholder="Enter your email or username"
+                    >
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300 pr-12"
+                            placeholder="Enter your password"
+                        >
+                        <button 
+                            type="button" 
+                            id="togglePassword"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                        >
+                            <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="university" class="block text-sm font-medium text-gray-700 mb-2">University</label>
+                    <select 
+                        id="university" 
+                        name="university" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300 bg-white"
+                    >
+                        <option value="">Select your university</option>
+                        <option value="ug">University of Ghana (UG)</option>
+                        <option value="knust">Kwame Nkrumah University of Science and Technology (KNUST)</option>
+                        <option value="ucc">University of Cape Coast (UCC)</option>
+                        <option value="uds">University for Development Studies (UDS)</option>
+                        <option value="uew">University of Education, Winneba (UEW)</option>
+                        <option value="ashesi">Ashesi University</option>
+                        <option value="central">Central University</option>
+                        <option value="gctu">Ghana Communication Technology University (GCTU)</option>
+                        <option value="valley-view">Valley View University</option>
+                        <option value="upsa">UPSA</option>
+                    </select>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="w-full btn-primary text-white font-semibold py-3 px-4 rounded-lg"
+                >
+                    Sign In
+                </button>
+            </form>
+
+            <div class="flex items-center my-6">
+                <div class="flex-1 border-t border-gray-300"></div>
+                <span class="px-4 text-sm text-gray-500">or</span>
+                <div class="flex-1 border-t border-gray-300"></div>
+            </div>
+
+            <button 
+                id="googleLogin"
+                class="w-full bg-white border border-gray-300 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center space-x-3 hover:bg-gray-50 transition-colors"
+            >
+                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span>Continue with Google</span>
+            </button>
+
+            <div class="flex justify-between items-center mt-6 text-sm">
+                <a href="#" id="forgotPassword" class="text-purple-600 hover:text-purple-800 transition-colors duration-300">
+                    Forgot Password?
+                </a>
+                <a href="#" id="createAccount" class="text-purple-600 hover:text-purple-800 transition-colors duration-300">
+                    Create Account
+                </a>
+            </div>
+
+            <div id="loginMessage" class="mt-4 p-3 rounded-lg hidden"></div>
+        </div>
+    </div>
+
+    <!-- Main Marketplace -->
+    <div id="marketplacePage" class="hidden marketplace-bg min-h-screen">
+        <!-- Navigation Header -->
+        <nav class="bg-white shadow-lg sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                            </svg>
+                        </div>
+                        <h1 class="text-xl font-bold text-gray-800">UNICHE</h1>
+                        <span id="universityBadge" class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium"></span>
+                    </div>
+                    
+                    <div class="flex-1 max-w-lg mx-8">
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                id="searchInput"
+                                placeholder="Search products, services..."
+                                class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            >
+                            <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="sellButton" class="btn-primary text-white px-4 py-2 rounded-lg font-medium">
+                            + Sell Item
+                        </button>
+                        <button id="messagesButton" class="relative p-2 text-gray-600 hover:text-gray-800">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                        </button>
+                        <div class="relative">
+                            <button id="profileButton" class="flex items-center space-x-2 text-gray-600 hover:text-gray-800">
+                                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm font-medium" id="userInitials">JD</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Categories -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Browse Categories</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="electronics">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Electronics</span>
+                    </button>
+                    
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="books">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Books</span>
+                    </button>
+
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="clothing">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-pink-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Clothing</span>
+                    </button>
+
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="food">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Food</span>
+                    </button>
+
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="services">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Services</span>
+                    </button>
+
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="accommodation">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-indigo-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Housing</span>
+                    </button>
+
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="sports">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-red-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Sports</span>
+                    </button>
+
+                    <button class="category-btn bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 text-center" data-category="other">
+                        <div class="w-12 h-12 mx-auto mb-2 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Other</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Featured Items -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Recent Listings</h2>
+                    <div class="flex space-x-2">
+                        <select id="sortSelect" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="recent">Most Recent</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                        <button id="filterButton" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
+                            </svg>
+                            <span>Filter</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="itemsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sell Item Modal -->
+    <div id="sellModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Sell an Item</h2>
+                    <button id="closeSellModal" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="sellForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Item Title</label>
+                            <input type="text" id="itemTitle" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="e.g., iPhone 13 Pro Max">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Price (GHS)</label>
+                            <input type="number" id="itemPrice" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="0.00" step="0.01">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                        <select id="itemCategory" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus bg-white">
+                            <option value="">Select category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="books">Books</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="food">Food</option>
+                            <option value="services">Services</option>
+                            <option value="accommodation">Accommodation</option>
+                            <option value="sports">Sports</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <textarea id="itemDescription" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus" placeholder="Describe your item in detail..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Upload Images</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-purple-500 transition-colors">
+                            <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                            </svg>
+                            <p class="text-gray-600 mb-2">Click to upload or drag and drop</p>
+                            <p class="text-sm text-gray-500">PNG, JPG up to 10MB each</p>
+                            <input type="file" id="itemImages" multiple accept="image/*" class="hidden">
+                            <button type="button" onclick="document.getElementById('itemImages').click()" class="mt-4 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors">
+                                Choose Files
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="urgentItem" class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                        <label for="urgentItem" class="text-sm text-gray-700">Mark as urgent</label>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <button type="button" id="cancelSell" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            Cancel
+                        </button>
+                        <button type="submit" class="flex-1 btn-primary text-white px-6 py-3 rounded-lg">
+                            Post Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Documentation Page -->
+    <div id="apiDocsPage" class="hidden min-h-screen bg-gray-50 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">UNICHE Backend API Documentation</h1>
+                    <p class="text-gray-600">Complete API reference for implementing UNICHE backend services</p>
+                </div>
+
+                <!-- Authentication Endpoints -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">🔐 Authentication</h2>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-blue-100 px-2 py-1 rounded">POST /api/auth/login</span>
+                                <span class="text-blue-600 text-sm">Login user</span>
+                            </div>
+                            <pre class="text-sm text-gray-700 bg-gray-100 p-3 rounded mt-2 overflow-x-auto"><code>{
+  "email": "student@ug.edu.gh",
+  "password": "password123",
+  "university": "ug"
+}</code></pre>
+                            <p class="text-sm text-gray-600 mt-2"><strong>Response:</strong> JWT token, user profile, university info</p>
+                        </div>
+
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-green-100 px-2 py-1 rounded">POST /api/auth/register</span>
+                                <span class="text-green-600 text-sm">Register new user</span>
+                            </div>
+                            <pre class="text-sm text-gray-700 bg-gray-100 p-3 rounded mt-2 overflow-x-auto"><code>{
+  "email": "newstudent@knust.edu.gh",
+  "password": "securepass",
+  "fullName": "John Doe",
+  "university": "knust",
+  "year": "2",
+  "phoneNumber": "+233501234567"
+}</code></pre>
+                        </div>
+
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-purple-100 px-2 py-1 rounded">POST /api/auth/google</span>
+                                <span class="text-purple-600 text-sm">Google OAuth login</span>
+                            </div>
+                            <pre class="text-sm text-gray-700 bg-gray-100 p-3 rounded mt-2 overflow-x-auto"><code>{
+  "googleToken": "ya29.a0AfH6SMC...",
+  "university": "ashesi"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketplace Endpoints -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">🛍️ Marketplace</h2>
+                    <div class="space-y-4">
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-yellow-100 px-2 py-1 rounded">GET /api/items</span>
+                                <span class="text-yellow-600 text-sm">Get marketplace items</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2"><strong>Query Parameters:</strong></p>
+                            <pre class="text-sm text-gray-700 bg-gray-100 p-3 rounded overflow-x-auto"><code>?university=ug&category=electronics&search=iphone&page=1&limit=20&sort=recent</code></pre>
+                        </div>
+
+                        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-indigo-100 px-2 py-1 rounded">POST /api/items</span>
+                                <span class="text-indigo-600 text-sm">Create new listing</span>
+                            </div>
+                            <pre class="text-sm text-gray-700 bg-gray-100 p-3 rounded mt-2 overflow-x-auto"><code>{
+  "title": "iPhone 13 Pro Max",
+  "description": "Excellent condition, barely used",
+  "price": 3500.00,
+  "category": "electronics",
+  "images": ["image1.jpg", "image2.jpg"],
+  "isUrgent": false,
+  "location": "UG Campus"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User & Messaging -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">👤 User & Messaging</h2>
+                    <div class="space-y-4">
+                        <div class="bg-pink-50 border border-pink-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-pink-100 px-2 py-1 rounded">GET /api/users/profile</span>
+                                <span class="text-pink-600 text-sm">Get user profile</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Returns: user info, ratings, active listings</p>
+                        </div>
+
+                        <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-sm bg-teal-100 px-2 py-1 rounded">POST /api/messages</span>
+                                <span class="text-teal-600 text-sm">Send message</span>
+                            </div>
+                            <pre class="text-sm text-gray-700 bg-gray-100 p-3 rounded mt-2 overflow-x-auto"><code>{
+  "recipientId": "user123",
+  "itemId": "item456",
+  "message": "Is this still available?"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Schema -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">🗄️ Database Schema</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-3">Users Collection</h3>
+                            <pre class="text-xs text-gray-700 overflow-x-auto"><code>{
+  "_id": "ObjectId",
+  "email": "string",
+  "fullName": "string",
+  "university": "string",
+  "year": "string",
+  "phoneNumber": "string",
+  "profilePicture": "string",
+  "rating": "number",
+  "createdAt": "Date",
+  "isVerified": "boolean"
+}</code></pre>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-3">Items Collection</h3>
+                            <pre class="text-xs text-gray-700 overflow-x-auto"><code>{
+  "_id": "ObjectId",
+  "title": "string",
+  "description": "string",
+  "price": "number",
+  "category": "string",
+  "images": ["string"],
+  "sellerId": "ObjectId",
+  "university": "string",
+  "isUrgent": "boolean",
+  "status": "active|sold|removed",
+  "createdAt": "Date"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Implementation Guide -->
+                <div class="bg-gradient-to-r from-purple-100 to-blue-100 rounded-lg p-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">🚀 Quick Implementation Guide</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Recommended Tech Stack</h3>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• <strong>Backend:</strong> Node.js + Express</li>
+                                <li>• <strong>Database:</strong> MongoDB with Mongoose</li>
+                                <li>• <strong>Auth:</strong> Firebase Auth or JWT</li>
+                                <li>• <strong>Storage:</strong> Firebase Storage</li>
+                                <li>• <strong>Real-time:</strong> Socket.io for messaging</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-2">Security Considerations</h3>
+                            <ul class="text-sm text-gray-700 space-y-1">
+                                <li>• University email verification</li>
+                                <li>• Rate limiting on API endpoints</li>
+                                <li>• Image upload validation</li>
+                                <li>• User reporting system</li>
+                                <li>• Content moderation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentUser = null;
+        let currentUniversity = null;
+        let marketplaceItems = [];
+
+        // Sample data
+        const sampleItems = [
+            {
+                id: 1,
+                title: "iPhone 13 Pro Max - 256GB",
+                price: 3500,
+                category: "electronics",
+                description: "Excellent condition, barely used. Comes with original box and charger.",
+                images: ["📱"],
+                seller: "John Doe",
+                university: "ug",
+                isUrgent: false,
+                createdAt: new Date(Date.now() - 86400000)
+            },
+            {
+                id: 2,
+                title: "Engineering Mathematics Textbook",
+                price: 45,
+                category: "books",
+                description: "4th edition, perfect for KNUST engineering students.",
+                images: ["📚"],
+                seller: "Sarah Wilson",
+                university: "knust",
+                isUrgent: true,
+                createdAt: new Date(Date.now() - 172800000)
+            },
+            {
+                id: 3,
+                title: "Vintage Denim Jacket",
+                price: 80,
+                category: "clothing",
+                description: "Size M, great condition. Perfect for campus style.",
+                images: ["👕"],
+                seller: "Mike Johnson",
+                university: "ucc",
+                isUrgent: false,
+                createdAt: new Date(Date.now() - 259200000)
+            },
+            {
+                id: 4,
+                title: "Tutoring Services - Mathematics",
+                price: 25,
+                category: "services",
+                description: "Experienced math tutor available for calculus and algebra.",
+                images: ["🎓"],
+                seller: "Emma Davis",
+                university: "ug",
+                isUrgent: false,
+                createdAt: new Date(Date.now() - 345600000)
+            },
+            {
+                id: 5,
+                title: "Gaming Laptop - ASUS ROG",
+                price: 2800,
+                category: "electronics",
+                description: "Perfect for gaming and programming. RTX 3060, 16GB RAM.",
+                images: ["💻"],
+                seller: "Alex Chen",
+                university: "ashesi",
+                isUrgent: false,
+                createdAt: new Date(Date.now() - 432000000)
+            },
+            {
+                id: 6,
+                title: "Room Available - East Legon",
+                price: 400,
+                category: "accommodation",
+                description: "Shared apartment near UG campus. Utilities included.",
+                images: ["🏠"],
+                seller: "Grace Mensah",
+                university: "ug",
+                isUrgent: true,
+                createdAt: new Date(Date.now() - 518400000)
+            }
+        ];
+
+        const universities = {
+            'ug': 'University of Ghana',
+            'knust': 'KNUST',
+            'ucc': 'University of Cape Coast',
+            'uds': 'University for Development Studies',
+            'uew': 'University of Education, Winneba',
+            'ashesi': 'Ashesi University',
+            'central': 'Central University',
+            'gctu': 'Ghana Communication Technology University',
+            'valley-view': 'Valley View University',
+            'upsa': 'UPSA'
+        };
+
+        // Authentication functions
+        function simulateLogin(email, password, university) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulate API call
+                    const user = {
+                        id: 'user123',
+                        email: email,
+                        fullName: 'John Doe',
+                        university: university,
+                        year: '3',
+                        profilePicture: null,
+                        rating: 4.8,
+                        createdAt: new Date()
+                    };
+                    
+                    currentUser = user;
+                    currentUniversity = university;
+                    
+                    // Store in localStorage (in real app, use secure token storage)
+                    localStorage.setItem('unicheUser', JSON.stringify(user));
+                    localStorage.setItem('unicheToken', 'jwt_token_here');
+                    
+                    resolve({ success: true, user: user, token: 'jwt_token_here' });
+                }, 1500);
+            });
+        }
+
+        function simulateGoogleLogin(university) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const user = {
+                        id: 'user456',
+                        email: 'student@gmail.com',
+                        fullName: 'Jane Smith',
+                        university: university,
+                        year: '2',
+                        profilePicture: 'https://via.placeholder.com/40',
+                        rating: 4.9,
+                        createdAt: new Date()
+                    };
+                    
+                    currentUser = user;
+                    currentUniversity = university;
+                    
+                    localStorage.setItem('unicheUser', JSON.stringify(user));
+                    localStorage.setItem('unicheToken', 'google_jwt_token_here');
+                    
+                    resolve({ success: true, user: user, token: 'google_jwt_token_here' });
+                }, 1000);
+            });
+        }
+
+        // Marketplace functions
+        function loadMarketplaceItems(filters = {}) {
+            // Simulate API call with filters
+            let filteredItems = [...sampleItems];
+            
+            if (filters.university) {
+                filteredItems = filteredItems.filter(item => item.university === filters.university);
+            }
+            
+            if (filters.category) {
+                filteredItems = filteredItems.filter(item => item.category === filters.category);
+            }
+            
+            if (filters.search) {
+                const searchTerm = filters.search.toLowerCase();
+                filteredItems = filteredItems.filter(item => 
+                    item.title.toLowerCase().includes(searchTerm) ||
+                    item.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            if (filters.sort) {
+                switch(filters.sort) {
+                    case 'price-low':
+                        filteredItems.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        filteredItems.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'recent':
+                    default:
+                        filteredItems.sort((a, b) => b.createdAt - a.createdAt);
+                        break;
+                }
+            }
+            
+            marketplaceItems = filteredItems;
+            renderMarketplaceItems();
+        }
+
+        function renderMarketplaceItems() {
+            const grid = document.getElementById('itemsGrid');
+            
+            if (marketplaceItems.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m13-8l-2-2m0 0l-2 2m2-2v6"></path>
+                        </svg>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">No items found</h3>
+                        <p class="text-gray-500">Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = marketplaceItems.map(item => `
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover overflow-hidden">
+                    <div class="aspect-w-16 aspect-h-12 bg-gray-100 flex items-center justify-center text-4xl">
+                        ${item.images[0]}
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="font-semibold text-gray-800 text-sm line-clamp-2">${item.title}</h3>
+                            ${item.isUrgent ? '<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Urgent</span>' : ''}
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3 line-clamp-2">${item.description}</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-bold text-purple-600">GHS ${item.price}</span>
+                            <span class="text-xs text-gray-500">${universities[item.university]}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <span>${item.seller}</span>
+                            <span>${formatTimeAgo(item.createdAt)}</span>
+                        </div>
+                        <button onclick="contactSeller(${item.id})" class="w-full mt-3 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+                            Contact Seller
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function contactSeller(itemId) {
+            const item = marketplaceItems.find(i => i.id === itemId);
+            if (item) {
+                showMessage(`Opening chat with ${item.seller}...`, 'info', 'loginMessage');
+                // In real app, this would open messaging interface
+                setTimeout(() => {
+                    showMessage(`Message sent to ${item.seller}! They'll receive a notification.`, 'success', 'loginMessage');
+                }, 1500);
+            }
+        }
+
+        function formatTimeAgo(date) {
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 60) return 'Just now';
+            if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
+            if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
+            return `${Math.floor(diffInSeconds / 86400)}d ago`;
+        }
+
+        // UI Event Handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            const savedUser = localStorage.getItem('unicheUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                currentUniversity = currentUser.university;
+                showMarketplace();
+            }
+
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const university = document.getElementById('university').value;
+
+                if (!email || !password || !university) {
+                    showMessage('Please fill in all fields', 'error', 'loginMessage');
+                    return;
+                }
+
+                showMessage('Signing you in...', 'info', 'loginMessage');
+                
+                try {
+                    const result = await simulateLogin(email, password, university);
+                    if (result.success) {
+                        showMessage(`Welcome to UNICHE! Loading ${universities[university]} marketplace...`, 'success', 'loginMessage');
+                        setTimeout(() => {
+                            showMarketplace();
+                        }, 2000);
+                    }
+                } catch (error) {
+                    showMessage('Login failed. Please try again.', 'error', 'loginMessage');
+                }
+            });
+
+            // Password toggle
+            document.getElementById('togglePassword').addEventListener('click', function() {
+                const passwordInput = document.getElementById('password');
+                const eyeIcon = document.getElementById('eyeIcon');
+                
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                if (type === 'text') {
+                    eyeIcon.innerHTML = `
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                    `;
+                } else {
+                    eyeIcon.innerHTML = `
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    `;
+                }
+            });
+
+            // Google login
+            document.getElementById('googleLogin').addEventListener('click', async function() {
+                const university = document.getElementById('university').value;
+                if (!university) {
+                    showMessage('Please select your university first', 'error', 'loginMessage');
+                    return;
+                }
+
+                showMessage('Connecting to Google...', 'info', 'loginMessage');
+                
+                try {
+                    const result = await simulateGoogleLogin(university);
+                    if (result.success) {
+                        showMessage('Google authentication successful! Loading marketplace...', 'success', 'loginMessage');
+                        setTimeout(() => {
+                            showMarketplace();
+                        }, 2000);
+                    }
+                } catch (error) {
+                    showMessage('Google login failed. Please try again.', 'error', 'loginMessage');
+                }
+            });
+
+            // Forgot password
+            document.getElementById('forgotPassword').addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = prompt('Enter your email address to reset password:');
+                if (email) {
+                    showMessage(`Password reset link sent to ${email}`, 'success', 'loginMessage');
+                }
+            });
+
+            // Create account
+            document.getElementById('createAccount').addEventListener('click', function(e) {
+                e.preventDefault();
+                showMessage('Registration feature coming soon!', 'info', 'loginMessage');
+            });
+
+            // Marketplace event listeners
+            setupMarketplaceEventListeners();
+        });
+
+        function setupMarketplaceEventListeners() {
+            // Search functionality
+            document.getElementById('searchInput')?.addEventListener('input', function(e) {
+                const searchTerm = e.target.value;
+                loadMarketplaceItems({
+                    university: currentUniversity,
+                    search: searchTerm,
+                    sort: document.getElementById('sortSelect')?.value || 'recent'
+                });
+            });
+
+            // Sort functionality
+            document.getElementById('sortSelect')?.addEventListener('change', function(e) {
+                loadMarketplaceItems({
+                    university: currentUniversity,
+                    search: document.getElementById('searchInput')?.value || '',
+                    sort: e.target.value
+                });
+            });
+
+            // Category filtering
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    loadMarketplaceItems({
+                        university: currentUniversity,
+                        category: category,
+                        sort: document.getElementById('sortSelect')?.value || 'recent'
+                    });
+                    
+                    // Update active state
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('ring-2', 'ring-purple-500'));
+                    this.classList.add('ring-2', 'ring-purple-500');
+                });
+            });
+
+            // Sell button
+            document.getElementById('sellButton')?.addEventListener('click', function() {
+                document.getElementById('sellModal').classList.remove('hidden');
+            });
+
+            // Close sell modal
+            document.getElementById('closeSellModal')?.addEventListener('click', function() {
+                document.getElementById('sellModal').classList.add('hidden');
+            });
+
+            document.getElementById('cancelSell')?.addEventListener('click', function() {
+                document.getElementById('sellModal').classList.add('hidden');
+            });
+
+            // Sell form
+            document.getElementById('sellForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    title: document.getElementById('itemTitle').value,
+                    price: parseFloat(document.getElementById('itemPrice').value),
+                    category: document.getElementById('itemCategory').value,
+                    description: document.getElementById('itemDescription').value,
+                    isUrgent: document.getElementById('urgentItem').checked
+                };
+
+                // Simulate posting item
+                showMessage('Posting your item...', 'info', 'loginMessage');
+                
+                setTimeout(() => {
+                    const newItem = {
+                        id: Date.now(),
+                        ...formData,
+                        images: ['📦'],
+                        seller: currentUser.fullName,
+                        university: currentUniversity,
+                        createdAt: new Date()
+                    };
+                    
+                    sampleItems.unshift(newItem);
+                    loadMarketplaceItems({ university: currentUniversity });
+                    
+                    document.getElementById('sellModal').classList.add('hidden');
+                    document.getElementById('sellForm').reset();
+                    
+                    showMessage('Item posted successfully!', 'success', 'loginMessage');
+                }, 1500);
+            });
+
+            // Messages button
+            document.getElementById('messagesButton')?.addEventListener('click', function() {
+                showMessage('Opening messages...', 'info', 'loginMessage');
+            });
+
+            // Profile button
+            document.getElementById('profileButton')?.addEventListener('click', function() {
+                showMessage('Opening profile settings...', 'info', 'loginMessage');
+            });
+        }
+
+        function showMarketplace() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('marketplacePage').classList.remove('hidden');
+            document.getElementById('apiDocsPage').classList.add('hidden');
+            
+            // Update UI with user info
+            document.getElementById('universityBadge').textContent = universities[currentUniversity];
+            document.getElementById('userInitials').textContent = currentUser.fullName.split(' ').map(n => n[0]).join('');
+            
+            // Load marketplace items for user's university
+            loadMarketplaceItems({ university: currentUniversity });
+            
+            // Re-setup event listeners for marketplace
+            setupMarketplaceEventListeners();
+        }
+
+        function showMessage(text, type, elementId = 'loginMessage') {
+            const messageDiv = document.getElementById(elementId);
+            if (!messageDiv) return;
+            
+            messageDiv.className = `mt-4 p-3 rounded-lg ${getMessageClass(type)}`;
+            messageDiv.textContent = text;
+            messageDiv.classList.remove('hidden');
+            
+            if (type === 'error') {
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                }, 5000);
+            }
+        }
+
+        function getMessageClass(type) {
+            switch(type) {
+                case 'success': return 'bg-green-100 text-green-800 border border-green-200';
+                case 'error': return 'bg-red-100 text-red-800 border border-red-200';
+                case 'info': return 'bg-blue-100 text-blue-800 border border-blue-200';
+                default: return 'bg-gray-100 text-gray-800 border border-gray-200';
+            }
+        }
+
+        // Add keyboard shortcut to view API docs (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('marketplacePage').classList.add('hidden');
+                document.getElementById('apiDocsPage').classList.remove('hidden');
+            }
+        });
+
+        // Add a button to view API docs
+        setTimeout(() => {
+            const apiButton = document.createElement('button');
+            apiButton.innerHTML = '📚 API Docs';
+            apiButton.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-700 transition-colors z-50';
+            apiButton.onclick = () => {
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('marketplacePage').classList.add('hidden');
+                document.getElementById('apiDocsPage').classList.remove('hidden');
+            };
+            document.body.appendChild(apiButton);
+        }, 2000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'962b54fca0e2033a',t:'MTc1MzEwNzU1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
