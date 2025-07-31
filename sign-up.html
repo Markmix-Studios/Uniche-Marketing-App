@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICHE - Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-focus:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        .university-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hidden { display: none !important; }
+        .marketplace-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .password-strength {
+            height: 4px;
+            transition: all 0.3s ease;
+        }
+        .password-strength.weak {
+            background-color: #ef4444;
+            width: 25%;
+        }
+        .password-strength.fair {
+            background-color: #f59e0b;
+            width: 50%;
+        }
+        .password-strength.good {
+            background-color: #10b981;
+            width: 75%;
+        }
+        .password-strength.strong {
+            background-color: #3b82f6;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="gradient-bg university-pattern min-h-screen">
+
+    <!-- Sign Up Page -->
+    <div id="signupPage" class="min-h-screen flex items-center justify-center p-4">
+        <div class="glass-effect rounded-2xl shadow-2xl w-full max-w-md p-8 fade-in">
+            <!-- Logo and Header -->
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                        <path d="M12 7L8 9v6l4 2 4-2V9l-4-2z" fill="rgba(255,255,255,0.3)"/>
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
+                <p class="text-gray-600 text-sm">Join UNICHE Campus Marketplace</p>
+            </div>
+
+            <!-- Sign Up Form -->
+            <form id="signupForm" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            name="firstName" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300"
+                            placeholder="First name"
+                        >
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            name="lastName" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300"
+                            placeholder="Last name"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">University Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300"
+                        placeholder="yourname@university.edu.gh"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Use your university email for verification</p>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300 pr-12"
+                            placeholder="Create a password"
+                        >
+                        <button 
+                            type="button" 
+                            id="togglePassword"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                        >
+                            <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="password-strength mt-2 rounded-full weak"></div>
+                    <p class="text-xs text-gray-500 mt-1">Use at least 8 characters with a mix of letters, numbers & symbols</p>
+                </div>
+
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300"
+                        placeholder="Confirm your password"
+                    >
+                </div>
+
+                <div>
+                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phoneNumber" 
+                        name="phoneNumber" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300"
+                        placeholder="+233501234567"
+                    >
+                </div>
+
+                <div>
+                    <label for="university" class="block text-sm font-medium text-gray-700 mb-2">University</label>
+                    <select 
+                        id="university" 
+                        name="university" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300 bg-white"
+                    >
+                        <option value="">Select your university</option>
+                        <option value="ug">University of Ghana (UG)</option>
+                        <option value="knust">Kwame Nkrumah University of Science and Technology (KNUST)</option>
+                        <option value="ucc">University of Cape Coast (UCC)</option>
+                        <option value="uds">University for Development Studies (UDS)</option>
+                        <option value="uew">University of Education, Winneba (UEW)</option>
+                        <option value="ashesi">Ashesi University</option>
+                        <option value="central">Central University</option>
+                        <option value="gctu">Ghana Communication Technology University (GCTU)</option>
+                        <option value="valley-view">Valley View University</option>
+                        <option value="upsa">UPSA</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="year" class="block text-sm font-medium text-gray-700 mb-2">Year of Study</label>
+                    <select 
+                        id="year" 
+                        name="year" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none input-focus transition-all duration-300 bg-white"
+                    >
+                        <option value="">Select year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                        <option value="5+">5th Year or above</option>
+                        <option value="postgrad">Postgraduate</option>
+                        <option value="alumni">Alumni</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center">
+                    <input 
+                        type="checkbox" 
+                        id="termsAgreement" 
+                        name="termsAgreement" 
+                        required
+                        class="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    >
+                    <label for="termsAgreement" class="ml-2 block text-sm text-gray-700">
+                        I agree to the <a href="#" class="text-purple-600 hover:text-purple-800">Terms of Service</a> and <a href="#" class="text-purple-600 hover:text-purple-800">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="w-full btn-primary text-white font-semibold py-3 px-4 rounded-lg mt-4"
+                >
+                    Create Account
+                </button>
+            </form>
+
+            <div class="flex items-center my-6">
+                <div class="flex-1 border-t border-gray-300"></div>
+                <span class="px-4 text-sm text-gray-500">or</span>
+                <div class="flex-1 border-t border-gray-300"></div>
+            </div>
+
+            <button 
+                id="googleSignup"
+                class="w-full bg-white border border-gray-300 text-gray-700 font-medium py-3 px-4 rounded-lg flex items-center justify-center space-x-3 hover:bg-gray-50 transition-colors"
+            >
+                <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span>Sign up with Google</span>
+            </button>
+
+            <div class="text-center mt-6 text-sm text-gray-600">
+                Already have an account? <a href="uniche-app.html" class="text-purple-600 hover:text-purple-800 transition-colors duration-300">Sign in</a>
+            </div>
+
+            <div id="signupMessage" class="mt-4 p-3 rounded-lg hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.querySelector('.password-strength');
+            
+            // Reset classes
+            strengthBar.className = 'password-strength mt-2 rounded-full';
+            
+            if (password.length === 0) {
+                strengthBar.classList.add('hidden');
+                return;
+            }
+            
+            strengthBar.classList.remove('hidden');
+            
+            // Calculate strength
+            let strength = 0;
+            
+            // Length
+            if (password.length > 7) strength += 1;
+            if (password.length > 11) strength += 1;
+            
+            // Contains numbers
+            if (/\d/.test(password)) strength += 1;
+            
+            // Contains special chars
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength += 1;
+            
+            // Contains both lower and upper case
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 1;
+            
+            // Update strength bar
+            if (strength < 2) {
+                strengthBar.classList.add('weak');
+            } else if (strength < 4) {
+                strengthBar.classList.add('fair');
+            } else if (strength < 5) {
+                strengthBar.classList.add('good');
+            } else {
+                strengthBar.classList.add('strong');
+            }
+        });
+
+        // Password toggle
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                `;
+            } else {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                `;
+            }
+        });
+
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const university = document.getElementById('university').value;
+            const year = document.getElementById('year').value;
+            
+            // Validate password match
+            if (password !== confirmPassword) {
+                showMessage('Passwords do not match', 'error', 'signupMessage');
+                return;
+            }
+            
+            // Validate university email (basic check)
+            if (university && !email.endsWith(university === 'ashesi' ? 'ashesi.edu.gh' : `${university}.edu.gh`)) {
+                showMessage(`Please use your ${universities[university]} email`, 'error', 'signupMessage');
+                return;
+            }
+            
+            // Show loading message
+            showMessage('Creating your account...', 'info', 'signupMessage');
+            
+            // Simulate API call
+            try {
+                const response = await simulateSignup({
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    phoneNumber,
+                    university,
+                    year
+                });
+                
+                if (response.success) {
+                    showMessage('Account created successfully! Redirecting to login...', 'success', 'signupMessage');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                }
+            } catch (error) {
+                showMessage(error.message || 'Registration failed. Please try again.', 'error', 'signupMessage');
+            }
+        });
+
+        // Google signup
+        document.getElementById('googleSignup').addEventListener('click', async function() {
+            const university = document.getElementById('university').value;
+            if (!university) {
+                showMessage('Please select your university first', 'error', 'signupMessage');
+                return;
+            }
+
+            showMessage('Connecting to Google...', 'info', 'signupMessage');
+            
+            try {
+                const response = await simulateGoogleSignup(university);
+                if (response.success) {
+                    showMessage('Google authentication successful!', 'success', 'signupMessage');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                }
+            } catch (error) {
+                showMessage('Google signup failed. Please try again.', 'error', 'signupMessage');
+            }
+        });
+
+        // Helper functions
+        function showMessage(text, type, elementId) {
+            const messageDiv = document.getElementById(elementId);
+            if (!messageDiv) return;
+            
+            messageDiv.className = `mt-4 p-3 rounded-lg ${getMessageClass(type)}`;
+            messageDiv.textContent = text;
+            messageDiv.classList.remove('hidden');
+            
+            if (type === 'error') {
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                }, 5000);
+            }
+        }
+
+        function getMessageClass(type) {
+            switch(type) {
+                case 'success': return 'bg-green-100 text-green-800 border border-green-200';
+                case 'error': return 'bg-red-100 text-red-800 border border-red-200';
+                case 'info': return 'bg-blue-100 text-blue-800 border border-blue-200';
+                default: return 'bg-gray-100 text-gray-800 border border-gray-200';
+            }
+        }
+
+        // Simulate API calls
+        const universities = {
+            'ug': 'University of Ghana',
+            'knust': 'KNUST',
+            'ucc': 'University of Cape Coast',
+            'uds': 'University for Development Studies',
+            'uew': 'University of Education, Winneba',
+            'ashesi': 'Ashesi University',
+            'central': 'Central University',
+            'gctu': 'Ghana Communication Technology University',
+            'valley-view': 'Valley View University',
+            'upsa': 'UPSA'
+        };
+
+        function simulateSignup(userData) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simulate validation
+                    if (!userData.email || !userData.password) {
+                        reject(new Error('Email and password are required'));
+                        return;
+                    }
+                    
+                    // Simulate successful registration
+                    resolve({
+                        success: true,
+                        message: 'Account created successfully',
+                        user: {
+                            id: 'newuser_' + Math.random().toString(36).substr(2, 9),
+                            email: userData.email,
+                            fullName: `${userData.firstName} ${userData.lastName}`,
+                            university: userData.university,
+                            year: userData.year,
+                            phoneNumber: userData.phoneNumber,
+                            isVerified: false
+                        }
+                    });
+                }, 1500);
+            });
+        }
+
+        function simulateGoogleSignup(university) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        success: true,
+                        user: {
+                            id: 'googleuser_' + Math.random().toString(36).substr(2, 9),
+                            email: 'student@gmail.com',
+                            fullName: 'Google User',
+                            university: university,
+                            year: '1',
+                            isVerified: true
+                        }
+                    });
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
